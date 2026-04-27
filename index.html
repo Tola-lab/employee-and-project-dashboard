@@ -2,234 +2,238 @@
 <html class="page" lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Employee & Project dashboard</title>
-	<link rel="stylesheet" href="styles/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee & Project dashboard</title>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body class="page__body">
-	<main class="main-container">
-		<h1 class="visually-hidden">Employee & Project dashboard</h1>
-		<aside class="dashboard__sidebar sidebar">
-			<button class="sidebar__button" type="button" aria-label="Close menu">
-				<span class="hamburger"></span>
-			</button>
-			<div class="sidebar__period">
-				<h2 class="sidebar__title">Period</h2>
-				<div class="sidebar__select select">
-					<select class="select__item" name="select-month" id="select-month">
-						<option value="0">January</option>
-						<option value="1">February</option>
-						<option value="2">March</option>
-						<option value="3" selected>April</option>
-						<option value="4">May</option>
-						<option value="5">June</option>
-						<option value="6">July</option>
-						<option value="7">August</option>
-						<option value="8">September</option>
-						<option value="9">October</option>
-						<option value="10">November</option>
-						<option value="11">December</option>
-					</select>
-					<select class="select__item" name="select-year" id="select-year">
-						<option value="2025">2025</option>
-						<option value="2026" selected>2026</option>
-						<option value="2027">2027</option>
-					</select>
-				</div>
-				<nav class="sidebar__navigation navigation">
-					<ul class="navigation__list">
-						<li class="navigation__item navigation__item--active">
-							<a class="navigation__link" href="#">Projects</a>
-						</li>
-						<li class="navigation__item">
-							<a class="navigation__link" href="#">Employees</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</aside>
+  <main class="main-container">
+    <h1 class="visually-hidden">Employee & Project dashboard</h1>
+    <aside class="dashboard__sidebar sidebar">
+      <button class="sidebar__button-open" aria-label="Open sidebar">→</button>
+      <div class="sidebar__wrapper">
+        <button class="sidebar__button" type="button" aria-label="Close sidebar">
+          <span class="hamburger"></span>
+        </button>
+        <div class="sidebar__period">
+          <h2 class="sidebar__title">Period</h2>
+          <div class="sidebar__select select">
+            <select class="select__item" name="select-month" id="select-month">
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3" selected>April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
+            <select class="select__item" name="select-year" id="select-year">
+              <option value="2025">2025</option>
+              <option value="2026" selected>2026</option>
+              <option value="2027">2027</option>
+            </select>
+          </div>
+          <nav class="sidebar__navigation navigation">
+            <ul class="navigation__list">
+              <li class="navigation__item">
+                <a class="navigation__link" href="#" id="navigation-projects">Projects</a>
+              </li>
+              <li class="navigation__item">
+                <a class="navigation__link" href="#" id="navigation-employees">Employees</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </aside>
 
-		<section class="dashboard__projects projects">
-			<div class="projects__wrapper wrapper">
-				<div class="projects__header">
-					<h2 class="projects__title title">Projects</h2>
-					<div class="projects__buttons">
-						<button class="projects__button projects__button--add" type="button">+ Add Project</button>
-						<button class="projects__button projects__button--seed" type="button">Seed Data</button>
-					</div>
-				</div>
-				<div class="projects__content content">
-					<table class="projects__filters filters">
-						<thead>
-							<tr>
-								<th class="filters__name">Company Name
-									<span class="filters__sort-icon">⇅</span>
-									<span class="filters__search-icon">⌕</span>
-								</th>
-								<th class="filters__name">Project Name
-									<span class="filters__sort-icon">⇅</span>
-									<span class="filters__search-icon">⌕</span>
-								</th>
-								<th class="filters__name">Budget
-									<span class="filters__sort-icon">⇅</span>
-								</th>
-								<th class="filters__name">Employee Capacity
-									<span class="filters__sort-icon">⇅</span>
-								</th>
-								<th class="filters__name">Employees</th>
-								<th class="filters__name">Estimated Income
-									<span class="filters__sort-icon">⇅</span>
-								</th>
-								<th class="filters__name">Actions</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
-					<p class="projects__total">Total Estimated Income:
-						<span class="projects__price">$0.00</span>
-					</p>
-				</div>
-			</div>
-		</section>
+    <section class="dashboard__projects projects">
+      <div class="projects__wrapper wrapper">
+        <div class="projects__header">
+          <h2 class="projects__title title">Projects</h2>
+          <div class="projects__buttons">
+            <button class="projects__button projects__button--add button" type="button">+ Add Project</button>
+            <button class="projects__button projects__button--seed button" type="button">Seed Data</button>
+          </div>
+        </div>
+        <div class="projects__content content">
+          <table class="projects__filters filters">
+            <thead>
+              <tr>
+                <th class="filters__name">Company Name
+                  <span class="filters__sort-icon">⇅</span>
+                  <span class="filters__search-icon">⌕</span>
+                </th>
+                <th class="filters__name">Project Name
+                  <span class="filters__sort-icon">⇅</span>
+                  <span class="filters__search-icon">⌕</span>
+                </th>
+                <th class="filters__name">Budget
+                  <span class="filters__sort-icon">⇅</span>
+                </th>
+                <th class="filters__name">Employee Capacity
+                  <span class="filters__sort-icon">⇅</span>
+                </th>
+                <th class="filters__name">Employees</th>
+                <th class="filters__name">Estimated Income
+                  <span class="filters__sort-icon">⇅</span>
+                </th>
+                <th class="filters__name">Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <p class="projects__total">Total Estimated Income:
+            <span class="projects__price">$0.00</span>
+          </p>
+        </div>
+      </div>
+    </section>
 
-		<section class="dashboard__employees employees">
-			<div class="employees__wrapper wrapper">
-				<div class="employees__header">
-					<h2 class="employees__title title">Employees</h2>
-					<button class="employees__button" type="button">+ Add Employee</button>
-				</div>
-				<div class="employees__content content">
-					<table class="employees__filters filters">
-						<thead>
-							<tr>
-								<th class="filters__name">Name
-									<span class="filters__sort-icon">⇅</span>
-									<span class="filters__search-icon">⌕</span>
-								</th>
-								<th class="filters__name">Surname
-									<span class="filters__sort-icon">⇅</span>
-									<span class="filters__search-icon">⌕</span>
-								</th>
-								<th class="filters__name">Age
-									<span class="filters__sort-icon">⇅</span>
-								</th>
-								<th class="filters__name">Position
-									<span class="filters__sort-icon">⇅</span>
-									<span class="filters__search-icon">⌕</span>
-								</th>
-								<th class="filters__name">Salary
-									<span class="filters__sort-icon">⇅</span>
-								</th>
-								<th class="filters__name">Estimated Payment
-									<span class="filters__sort-icon">⇅</span>
-								</th>
-								<th class="filters__name">Project
-									<span class="filters__sort-icon">⇅</span>
-									<span class="filters__search-icon">⌕</span>
-								</th>
-								<th class="filters__name">Projected Income
-									<span class="filters__sort-icon">⇅</span>
-								</th>
-								<th class="filters__name">Actions</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
-				</div>
-			</div>
-		</section>
-	</main>
+    <section class="dashboard__employees employees">
+      <div class="employees__wrapper wrapper">
+        <div class="employees__header">
+          <h2 class="employees__title title">Employees</h2>
+          <button class="employees__button button" type="button">+ Add Employee</button>
+        </div>
+        <div class="employees__content content">
+          <table class="employees__filters filters">
+            <thead>
+              <tr>
+                <th class="filters__name">Name
+                  <span class="filters__sort-icon">⇅</span>
+                  <span class="filters__search-icon">⌕</span>
+                </th>
+                <th class="filters__name">Surname
+                  <span class="filters__sort-icon">⇅</span>
+                  <span class="filters__search-icon">⌕</span>
+                </th>
+                <th class="filters__name">Age
+                  <span class="filters__sort-icon">⇅</span>
+                </th>
+                <th class="filters__name">Position
+                  <span class="filters__sort-icon">⇅</span>
+                  <span class="filters__search-icon">⌕</span>
+                </th>
+                <th class="filters__name">Salary
+                  <span class="filters__sort-icon">⇅</span>
+                </th>
+                <th class="filters__name">Estimated Payment
+                  <span class="filters__sort-icon">⇅</span>
+                </th>
+                <th class="filters__name">Project
+                  <span class="filters__sort-icon">⇅</span>
+                  <span class="filters__search-icon">⌕</span>
+                </th>
+                <th class="filters__name">Projected Income
+                  <span class="filters__sort-icon">⇅</span>
+                </th>
+                <th class="filters__name">Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 
 <div class="dashboard__form dashboard__form--project form">
-	<h2 class="form__title">Add New Project</h2>
-	<form action="#" method="post">
-		<label class="form__label" for="project-name">Project Name: *</label>
-		<input class="form__input" type="text" id="project-name" name="project-name" title="Project name must be at least 3 characters" minlength="3" required>
+  <h2 class="form__title">Add New Project</h2>
+  <form action="#" method="post">
+    <label class="form__label" for="project-name">Project Name: *</label>
+    <input class="form__input" type="text" id="project-name" name="project-name" title="Project name must be at least 3 characters" minlength="3" required>
 
-		<label class="form__label" for="company-name">Company Name: *</label>
-		<input class="form__input" type="text" id="company-name" name="company-name" title="Company name must be at least 2 characters" minlength="2" required>
+    <label class="form__label" for="company-name">Company Name: *</label>
+    <input class="form__input" type="text" id="company-name" name="company-name" title="Company name must be at least 2 characters" minlength="2" required>
 
-		<label class="form__label" for="budget">Budget: *</label>
-		<input class="form__input" type="number" id="budget" name="budget" title="Budget must be greater than 0" min="0.01" step="0.01" required>
+    <label class="form__label" for="budget">Budget: *</label>
+    <input class="form__input" type="number" id="budget" name="budget" title="Budget must be greater than 0" min="0.01" step="0.01" required>
 
-		<label class="form__label" for="employee-capacity">Employee Capacity: *</label>
-		<input class="form__input" type="number" id="employee-capacity" name="employee-capacity" title="Employee capacity must be at least 1" min="1" step="1" required>
+    <label class="form__label" for="employee-capacity">Employee Capacity: *</label>
+    <input class="form__input" type="number" id="employee-capacity" name="employee-capacity" title="Employee capacity must be at least 1" min="1" step="1" required>
 
-		<div class="form__buttons">
-			<button class="form__button form__button--add" type="submit" disabled>Add</button>
-			<button class="form__button form__button--cancel" type="button">Cancel</button>
-		</div>
-	</form>
+    <div class="form__buttons">
+      <button class="form__button form__button--add button" type="submit" disabled>Add</button>
+      <button class="form__button form__button--cancel button" type="button">Cancel</button>
+    </div>
+  </form>
 </div>
 
 <div class="dashboard__form dashboard__form--employee form">
-	<h2 class="form__title">Add New Employee</h2>
-	<form action="#" method="post">
-		<label class="form__label" for="name">Name: *</label>
-		<input class="form__input" type="text" id="name" name="name" title="Name must be at least 3 characters and contain only letters" minlength="3" required>
+  <h2 class="form__title">Add New Employee</h2>
+  <form action="#" method="post">
+    <label class="form__label" for="name">Name: *</label>
+    <input class="form__input" type="text" id="name" name="name" title="Name must be at least 3 characters and contain only letters" minlength="3" required>
 
-		<label class="form__label" for="surname">Surname: *</label>
-		<input class="form__input" type="text" id="surname" name="surname" title="Surname must be at least 3 characters and contain only letters" minlength="3" required>
+    <label class="form__label" for="surname">Surname: *</label>
+    <input class="form__input" type="text" id="surname" name="surname" title="Surname must be at least 3 characters and contain only letters" minlength="3" required>
 
-		<label class="form__label" for="date-of-birth">Date of Birth: *</label>
-		<input class="form__input" type="date" id="date-of-birth" name="date-of-birth" title="You must be at least 18 years old" required>
+    <label class="form__label" for="date-of-birth">Date of Birth: *</label>
+    <input class="form__input" type="date" id="date-of-birth" name="date-of-birth" title="You must be at least 18 years old" required>
 
-		<label class="form__label" for="position">Position: *</label>
-		<select class="form__select" id="position" name="position" required>
-			<option value="">Select position</option>
-			<option value="Junior">Junior</option>
-			<option value="Middle">Middle</option>
-			<option value="Senior">Senior</option>
-			<option value="Lead">Lead</option>
-			<option value="Architect">Architect</option>
-			<option value="BO">BO</option>
-		</select>
+    <label class="form__label" for="position">Position: *</label>
+    <select class="form__select" id="position" name="position" required>
+      <option value="">Select position</option>
+      <option value="Junior">Junior</option>
+      <option value="Middle">Middle</option>
+      <option value="Senior">Senior</option>
+      <option value="Lead">Lead</option>
+      <option value="Architect">Architect</option>
+      <option value="BO">BO</option>
+    </select>
 
-		<label class="form__label" for="salary">Salary: *</label>
-		<input class="form__input" type="number" id="salary" name="salary" title="Salary must be greater than 0" min="0.01" step="0.01" required>
+    <label class="form__label" for="salary">Salary: *</label>
+    <input class="form__input" type="number" id="salary" name="salary" title="Salary must be greater than 0" min="0.01" step="0.01" required>
 
-		<div class="form__buttons">
-			<button class="form__button form__button--add" type="submit" disabled>Add</button>
-			<button class="form__button form__button--cancel" type="button">Cancel</button>
-		</div>
-	</form>
+    <div class="form__buttons">
+      <button class="form__button form__button--add button" type="submit" disabled>Add</button>
+      <button class="form__button form__button--cancel button" type="button">Cancel</button>
+    </div>
+  </form>
 </div>
 
 <div class="seed__modal modal">
-	<div class="modal__wrapper">
-		<div class="modal__header">
-			<h2 class="modal__title">Seed Data from Month</h2>
-			<button class="modal__button" type="button">
-				<span class="visually-hidden">Close</span>
-			</button>
-		</div>
-		<div class="modal__content">
-			<p class="modal__description">Select a month to copy its data to the current month <span>(April 2026)</span>:
-			<p>
-			<table class="modal__filters filters">
-				<thead>
-					<tr>
-						<th class="filters__name">Year</th>
-						<th class="filters__name">Month</th>
-						<th class="filters__name">Projects</th>
-						<th class="filters__name">Employees</th>
-						<th class="filters__name">Total Est. Income</th>
-						<th class="filters__name">Action</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-		</div>
-	</div>
+  <div class="modal__wrapper">
+    <div class="modal__header">
+      <h2 class="modal__title">Seed Data from Month</h2>
+      <button class="modal__button" type="button">
+        <span class="visually-hidden">Close</span>
+      </button>
+    </div>
+    <div class="modal__content">
+      <p class="modal__description">Select a month to copy its data to the current month <span>(April 2026)</span>:
+      <p>
+      <table class="modal__filters filters">
+        <thead>
+          <tr>
+            <th class="filters__name">Year</th>
+            <th class="filters__name">Month</th>
+            <th class="filters__name">Projects</th>
+            <th class="filters__name">Employees</th>
+            <th class="filters__name">Total Est. Income</th>
+            <th class="filters__name">Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <div class="filter__popup popup">
-	<input class="popup__input" type="text" placeholder="Filter by Company Name...">
-	<button class="popup__button popup__button--apply" type="button">Apply</button>
-	<button class="popup__button popup__button--cancel" type="button">Cancel</button>
+  <input class="popup__input" type="text" placeholder="Filter by Company Name...">
+  <button class="popup__button popup__button--apply button" type="button">Apply</button>
+  <button class="popup__button popup__button--cancel button" type="button">Cancel</button>
 </div>
+<script type="module" src="scripts/main.js"></script>
 
 </html>
