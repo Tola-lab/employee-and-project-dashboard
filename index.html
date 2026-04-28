@@ -144,96 +144,98 @@
       </div>
     </section>
   </main>
-</body>
 
-<div class="dashboard__form dashboard__form--project form">
-  <h2 class="form__title">Add New Project</h2>
-  <form action="#" method="post">
-    <label class="form__label" for="project-name">Project Name: *</label>
-    <input class="form__input" type="text" id="project-name" name="project-name" title="Project name must be at least 3 characters" minlength="3" required>
+  <div class="dashboard__form dashboard__form--project form">
+    <h2 class="form__title">Add New Project</h2>
+    <form action="#" method="post">
+      <label class="form__label" for="project-name">Project Name: *</label>
+      <input class="form__input" type="text" id="project-name" name="project-name" title="Project name must be at least 3 characters" minlength="3" required>
 
-    <label class="form__label" for="company-name">Company Name: *</label>
-    <input class="form__input" type="text" id="company-name" name="company-name" title="Company name must be at least 2 characters" minlength="2" required>
+      <label class="form__label" for="company-name">Company Name: *</label>
+      <input class="form__input" type="text" id="company-name" name="company-name" title="Company name must be at least 2 characters" minlength="2" required>
 
-    <label class="form__label" for="budget">Budget: *</label>
-    <input class="form__input" type="number" id="budget" name="budget" title="Budget must be greater than 0" min="0.01" step="0.01" required>
+      <label class="form__label" for="budget">Budget: *</label>
+      <input class="form__input" type="number" id="budget" name="budget" title="Budget must be greater than 0" min="0.01" step="0.01" required>
 
-    <label class="form__label" for="employee-capacity">Employee Capacity: *</label>
-    <input class="form__input" type="number" id="employee-capacity" name="employee-capacity" title="Employee capacity must be at least 1" min="1" step="1" required>
+      <label class="form__label" for="employee-capacity">Employee Capacity: *</label>
+      <input class="form__input" type="number" id="employee-capacity" name="employee-capacity" title="Employee capacity must be at least 1" min="1" step="1" required>
 
-    <div class="form__buttons">
-      <button class="form__button form__button--add button" type="submit" disabled>Add</button>
-      <button class="form__button form__button--cancel button" type="button">Cancel</button>
-    </div>
-  </form>
-</div>
+      <div class="form__buttons">
+        <button class="form__button form__button--add button" type="submit" disabled>Add</button>
+        <button class="form__button form__button--cancel button" type="button">Cancel</button>
+      </div>
+    </form>
+  </div>
 
-<div class="dashboard__form dashboard__form--employee form">
-  <h2 class="form__title">Add New Employee</h2>
-  <form action="#" method="post">
-    <label class="form__label" for="name">Name: *</label>
-    <input class="form__input" type="text" id="name" name="name" title="Name must be at least 3 characters and contain only letters" minlength="3" required>
+  <div class="dashboard__form dashboard__form--employee form">
+    <h2 class="form__title">Add New Employee</h2>
+    <form action="#" method="post">
+      <label class="form__label" for="name">Name: *</label>
+      <input class="form__input" type="text" id="name" name="name" title="Name must be at least 3 characters and contain only letters" minlength="3" required>
 
-    <label class="form__label" for="surname">Surname: *</label>
-    <input class="form__input" type="text" id="surname" name="surname" title="Surname must be at least 3 characters and contain only letters" minlength="3" required>
+      <label class="form__label" for="surname">Surname: *</label>
+      <input class="form__input" type="text" id="surname" name="surname" title="Surname must be at least 3 characters and contain only letters" minlength="3" required>
 
-    <label class="form__label" for="date-of-birth">Date of Birth: *</label>
-    <input class="form__input" type="date" id="date-of-birth" name="date-of-birth" title="You must be at least 18 years old" required>
+      <label class="form__label" for="date-of-birth">Date of Birth: *</label>
+      <input class="form__input" type="date" id="date-of-birth" name="date-of-birth" title="You must be at least 18 years old" required>
 
-    <label class="form__label" for="position">Position: *</label>
-    <select class="form__select" id="position" name="position" required>
-      <option value="">Select position</option>
-      <option value="Junior">Junior</option>
-      <option value="Middle">Middle</option>
-      <option value="Senior">Senior</option>
-      <option value="Lead">Lead</option>
-      <option value="Architect">Architect</option>
-      <option value="BO">BO</option>
-    </select>
+      <label class="form__label" for="position">Position: *</label>
+      <select class="form__select" id="position" name="position" required>
+        <option value="">Select position</option>
+        <option value="Junior">Junior</option>
+        <option value="Middle">Middle</option>
+        <option value="Senior">Senior</option>
+        <option value="Lead">Lead</option>
+        <option value="Architect">Architect</option>
+        <option value="BO">BO</option>
+      </select>
 
-    <label class="form__label" for="salary">Salary: *</label>
-    <input class="form__input" type="number" id="salary" name="salary" title="Salary must be greater than 0" min="0.01" step="0.01" required>
+      <label class="form__label" for="salary">Salary: *</label>
+      <input class="form__input" type="number" id="salary" name="salary" title="Salary must be greater than 0" min="0.01" step="0.01" required>
 
-    <div class="form__buttons">
-      <button class="form__button form__button--add button" type="submit" disabled>Add</button>
-      <button class="form__button form__button--cancel button" type="button">Cancel</button>
-    </div>
-  </form>
-</div>
+      <div class="form__buttons">
+        <button class="form__button form__button--add button" type="submit" disabled>Add</button>
+        <button class="form__button form__button--cancel button" type="button">Cancel</button>
+      </div>
+    </form>
+  </div>
 
-<div class="seed__modal modal">
-  <div class="modal__wrapper">
-    <div class="modal__header">
-      <h2 class="modal__title">Seed Data from Month</h2>
-      <button class="modal__button" type="button">
-        <span class="visually-hidden">Close</span>
-      </button>
-    </div>
-    <div class="modal__content">
-      <p class="modal__description">Select a month to copy its data to the current month <span>(April 2026)</span>:
-      <p>
-      <table class="modal__filters filters">
-        <thead>
-          <tr>
-            <th class="filters__name">Year</th>
-            <th class="filters__name">Month</th>
-            <th class="filters__name">Projects</th>
-            <th class="filters__name">Employees</th>
-            <th class="filters__name">Total Est. Income</th>
-            <th class="filters__name">Action</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+  <div class="seed__modal modal">
+    <div class="modal__wrapper">
+      <div class="modal__header">
+        <h2 class="modal__title">Seed Data from Month</h2>
+        <button class="modal__button" type="button">
+          <span class="visually-hidden">Close</span>
+        </button>
+      </div>
+      <div class="modal__content">
+        <p class="modal__description">Select a month to copy its data to the current month <span>(April 2026)</span>:
+        <p>
+        <table class="modal__filters filters">
+          <thead>
+            <tr>
+              <th class="filters__name">Year</th>
+              <th class="filters__name">Month</th>
+              <th class="filters__name">Projects</th>
+              <th class="filters__name">Employees</th>
+              <th class="filters__name">Total Est. Income</th>
+              <th class="filters__name">Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="filter__popup popup">
-  <input class="popup__input" type="text" placeholder="Filter by Company Name...">
-  <button class="popup__button popup__button--apply button" type="button">Apply</button>
-  <button class="popup__button popup__button--cancel button" type="button">Cancel</button>
-</div>
+  <div class="filter__popup popup">
+    <input class="popup__input" type="text" placeholder="Filter by Company Name...">
+    <button class="popup__button popup__button--apply button" type="button">Apply</button>
+    <button class="popup__button popup__button--cancel button" type="button">Cancel</button>
+  </div>
+
+</body>
+
 <script type="module" src="scripts/main.js"></script>
 
 </html>
