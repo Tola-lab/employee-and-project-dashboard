@@ -80,4 +80,12 @@ const checkData = () => {
   setData('monthlyData', {[`${year}-${month}`] : sampleData })
 }
 
-export { setData, getData, getDataFromMonth, checkData, employeeData, projectData }
+const saveDataToMonth = (year, month, type, item) => {
+  const allData = getData();
+  const monthData = getDataFromMonth(year, month);
+  monthData[type].push(item);
+  allData[`${year}-${month}`] = monthData;
+  setData('monthlyData', allData);
+}
+
+export { setData, getData, getDataFromMonth, checkData, saveDataToMonth, employeeData, projectData }

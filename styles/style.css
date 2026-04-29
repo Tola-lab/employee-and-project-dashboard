@@ -334,6 +334,12 @@ body {
 .form__input,
 .form__select {
   height: 35px;
+  border: 1px solid #ccc;
+}
+
+.form__input:invalid,
+.form__select:invalid {
+  border-color: #e74c3c;
 }
 
 .form__buttons {
