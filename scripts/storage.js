@@ -88,4 +88,13 @@ const saveDataToMonth = (year, month, type, item) => {
   setData('monthlyData', allData);
 }
 
-export { setData, getData, getDataFromMonth, checkData, saveDataToMonth, employeeData, projectData }
+const deleteDataFromMonth = (year, month, type, id) => {
+  const allData = getData();
+  const monthData = getDataFromMonth(year, month);
+  const currentProjects = monthData[type].filter(item => item.id !== +id);
+  monthData[type] = currentProjects;
+  allData[`${year}-${month}`] = monthData;
+  setData('monthlyData', allData);
+};
+
+export { setData, getData, getDataFromMonth, checkData, saveDataToMonth, deleteDataFromMonth, employeeData, projectData }
