@@ -15,6 +15,8 @@ export const createEmployee = () => {
     dateOfBirth: dateOfBirth,
     position: position,
     salary: salary,
+    projectAssignments: [],
+    dayoff: []
   };
 
   saveDataToMonth(SELECT_YEAR.value, SELECT_MONTH.value, 'employees', employeeData);

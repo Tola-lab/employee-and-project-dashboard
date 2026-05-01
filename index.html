@@ -230,8 +230,63 @@
 
   <div class="filter__popup popup">
     <input class="popup__input" type="text" placeholder="Filter by Company Name...">
-    <button class="popup__button popup__button--apply button" type="button">Apply</button>
-    <button class="popup__button popup__button--cancel button" type="button">Cancel</button>
+    <div class="popup__buttons">
+      <button class="popup__button popup__button--apply button" type="button">Apply</button>
+      <button class="popup__button popup__button--cancel button" type="button">Cancel</button>
+    </div>
+  </div>
+
+  <div class="assign__popup assign">
+    <div class="assign__wrapper">
+      <h2 class="assign__title"></h2>
+      <div class="assign__status">
+        <div class="assign__status-item">
+          <p>Current Capacity:</p>
+          <span><span class="assign-current-capacity">0.0</span> / 1.5</span>
+        </div>
+        <div class="assign__status-item">
+          <p>Available:</p>
+          <span class="available-capacity">1.5</span>
+        </div>
+      </div>
+      <label class="assign__label" for="select-project">Select Project:</label>
+      <select class="assign__select" id="select-project">
+        <option value="">Select a project</option>
+        <option class="assign__option" value="project-name"></option>
+      </select>
+      <div class="assign__content">
+        <div class="assign__slider-wrapper">
+          <label class="assign__label" for="capacity-allocation">Capacity Allocation: <span class="assign__capacity-value" id="capacity-value">1.0</span></label>
+          <input class="assign__input" type="range" id="capacity-allocation" min="0" max="1.5" step="0.1" value="1.0">
+          <span class="assign__description">Adjust capacity (0.0 - 1.5)</span>
+
+          <label class="assign__label" for="project-fit">Project Fit: <span class="assign__capacity-value" id="fit-value">1.0</span></label>
+          <input class="assign__input" type="range" id="project-fit" min="0" max="1" step="0.1" value="1.0">
+          <span class="assign__description">Project fit coefficient (0.0-1.0). Effective capacity = capacity × fit</span>
+        </div>
+        <div class="assign__info info">
+          <ul class="info__list">
+            <li class="info__item">
+              <p class="info__title">Project Capacity:</p>
+              <span class="info__value"><span class="info__capacity">0.0</span> / <span class="info__total-capacity">0</span></span>
+            </li>
+            <li class="info__item">
+              <p class="info__title">Effective Capacity:</p>
+              <span class="info__value info__value--effective">1.00</span>
+            </li>
+            <li class="info__item">
+              <p class="info__title">After Assignment:</p>
+              <span class="info__value info__value--target">1.00 / 0</span>
+            </li>
+          </ul>
+        </div>
+        <div class="assign__validation-message"></div>
+        <div class="assign__buttons">
+          <button class="assign__button assign__button--apply button" type="button">Assign</button>
+          <button class="assign__button assign__button--cancel button" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
 
 </body>

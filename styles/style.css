@@ -19,6 +19,7 @@ body {
   line-height: 20px;
   letter-spacing: 5%;
   color: #181C29;
+  background-color: #e9eeef;
   overflow-wrap: break-word;
 }
 
@@ -59,7 +60,6 @@ body {
 }
 
 .modal,
-.popup,
 .employees,
 .projects {
   display: none;
@@ -290,11 +290,20 @@ body {
   background-color: #814897;
 }
 
-.button__assign {
+.button__assign,
+.popup__button--apply,
+.button__show-assignments {
   background-color: #4787ff;
 }
 
-.button__assign:hover {
+.button__show-assignments {
+  text-transform: none;
+  font-size: 12px;
+}
+
+.button__assign:hover,
+.popup__button--apply:hover,
+.button__show-assignments:hover {
   background-color: #2d6feb;
 }
 
@@ -364,4 +373,138 @@ body {
   cursor: default;
 }
 
+.assign {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 400px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px #0000001a;
+}
 
+.assign--open {
+  display: block;
+}
+
+.assign__title {
+  margin: 0;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #6e7078;
+}
+
+.assign__status,
+.assign__info {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #e8f4f8;
+  border-radius: 10px;
+}
+
+.assign__status-item {
+  display: flex;
+}
+
+.assign__status-item p,
+.projects__total {
+  margin: 0;
+  padding-right: 10px;
+  font-weight: 600;
+}
+
+.available-capacity,
+.projects__price {
+  font-weight: 600;
+  color: #2aa848;
+}
+
+.assign__label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.assign__select {
+  margin-bottom: 10px;
+  width: 100%;
+  height: 30px;
+}
+
+.assign__input {
+  margin: 0;
+  width: 100%;
+}
+
+.assign__description {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.assign__content {
+  display: none;
+}
+
+.info__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.info__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info__title {
+  margin: 0;
+  font-weight: 800;
+}
+
+.info__value--target {
+  font-weight: 800;
+}
+
+.assign__buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.assign__button--cancel,
+.popup__button--cancel {
+  background-color: #95a5a6;
+}
+
+.assign__button--cancel:hover,
+.popup__button--cancel:hover {
+  background-color: #778586;
+}
+
+.popup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 20px;
+  left: 50%;
+  width: 220px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.filter__popup {
+  display: none;
+}
+
+.popup__input {
+  margin-bottom: 10px;
+}
+
+.popup__button {
+  padding: 5px;
+  text-transform: none;
+}

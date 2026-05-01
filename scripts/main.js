@@ -6,6 +6,7 @@ import { checkData } from './storage.js';
 import { renderProjects, deleteProject } from './render-projects.js';
 import { renderEmployees, deleteEmployee } from './render-employees.js';
 import { SELECT_MONTH, SELECT_YEAR } from "./state.js";
+import { assignEmployee } from './assign-popup.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initContent();
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAll();
   deleteProject();
   deleteEmployee();
+  assignEmployee();
 
   SELECT_YEAR.addEventListener('change', renderAll);
   SELECT_MONTH.addEventListener('change', renderAll);

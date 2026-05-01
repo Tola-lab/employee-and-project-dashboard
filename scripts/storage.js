@@ -1,3 +1,5 @@
+import { YEAR, MONTH } from "./state.js";
+
 const setData = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
@@ -70,14 +72,10 @@ const sampleData = {
   }]
 };
 
-const now = new Date();
-const year = now.getFullYear();
-const month = now.getMonth();
-
 const checkData = () => {
   const allData = getData();
   if (allData) return;
-  setData('monthlyData', {[`${year}-${month}`] : sampleData })
+  setData('monthlyData', {[`${YEAR}-${MONTH}`] : sampleData })
 }
 
 const saveDataToMonth = (year, month, type, item) => {
@@ -97,4 +95,24 @@ const deleteDataFromMonth = (year, month, type, id) => {
   setData('monthlyData', allData);
 };
 
-export { setData, getData, getDataFromMonth, checkData, saveDataToMonth, deleteDataFromMonth, employeeData, projectData }
+const findEmployee = (year, month, id) => {
+  const data = getDataFromMonth(year, month);
+  return data.employees.find(employee => employee.id === Number(id));
+}
+
+const findProject = (year, month, id) => {
+  const data = getDataFromMonth(year, month);
+  return data.projects.find(project => project.id === Number(id));
+}
+
+const updateEmployee = (year, month, employee) => {
+  const allData = getData() || {};
+  const monthData = getDataFromMonth(year, month);
+  monthData.employees = monthData.employees.map(item =>
+    item.id === employee.id ? employee : item
+  );
+  allData[`${year}-${month}`] = monthData;
+  setData('monthlyData', allData);
+};
+
+export { setData, getData, getDataFromMonth, checkData, saveDataToMonth, deleteDataFromMonth, findEmployee, findProject, updateEmployee, employeeData, projectData }
