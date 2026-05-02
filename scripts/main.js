@@ -5,10 +5,13 @@ import { initEmployeeForm } from './employee-form.js';
 import { checkData } from './storage.js';
 import { renderProjects, deleteProject } from './render-projects.js';
 import { renderEmployees, deleteEmployee } from './render-employees.js';
-import { SELECT_MONTH, SELECT_YEAR } from "./state.js";
+import { SELECT_MONTH, SELECT_YEAR, MONTH, YEAR } from "./state.js";
 import { assignEmployee } from './assign-popup.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  SELECT_MONTH.value = MONTH;
+  SELECT_YEAR.value = YEAR;
+
   initContent();
   toggleSideBar();
   initProjectsForm();

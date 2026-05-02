@@ -1,4 +1,5 @@
 import { getDataFromMonth, deleteDataFromMonth, findEmployee } from './storage.js';
+import {effectiveCapacity, revenue, cost, profit } from './calculations.js';
 import { SELECT_MONTH, SELECT_YEAR } from "./state.js";
 
 export const deleteEmployee = () => {
@@ -31,10 +32,35 @@ export const renderEmployees = (year, month) => {
   container.innerHTML = '';
 
   employees.forEach((employee) => {
+
     const birthYear = new Date(employee.dateOfBirth).getFullYear();
     const age = year - birthYear;
     const assignmentCount = employee.projectAssignments.length;
     const totalCapacity = employee.projectAssignments.reduce((sum, a) => sum + a.capacity, 0);
+
+    const estimatedPayment = assignmentCount > 0
+      ? employee.projectAssignments.reduce((sum, a) => sum + employee.salary * Math.max(0.5, a.capacity), 0)
+      : employee.salary * 0.5;
+
+    const projectedIncome = employee.projectAssignments.reduce((sum, assignment) => {
+      const project = data.projects.find(p => p.id === assignment.projectId);
+      if (!project) return sum;
+
+      const allProjectEmployees = data.employees.filter(e =>
+        e.projectAssignments.some(a => a.projectId === project.id)
+      );
+
+      const usedEffectiveCapacity = allProjectEmployees.reduce((s, e) => {
+        const a = e.projectAssignments.find(a => a.projectId === project.id);
+        return s + effectiveCapacity(a.capacity, a.fit);
+      }, 0);
+
+      const empEffectiveCapacity = effectiveCapacity(assignment.capacity, assignment.fit);
+      const empRevenue = revenue(project.budget, project.employeeCapacity, usedEffectiveCapacity, empEffectiveCapacity);
+      const empCost = cost(employee.salary, assignment.capacity);
+
+      return sum + profit(empRevenue, empCost);
+    }, 0);
 
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -42,10 +68,10 @@ export const renderEmployees = (year, month) => {
       <td>${employee.surname}</td>
       <td>${age}</td>
       <td>${employee.position}</td>
-      <td>$${employee.salary}</td>
-      <td>$0.00</td>
+      <td>$${employee.salary.toFixed(2)}</td>
+      <td>$${estimatedPayment.toFixed(2)}</td>
       <td><button class="button__show-assignments button">${assignmentCount > 0 ? `Show Assignments (${assignmentCount}) ${totalCapacity.toFixed(1)}/1.5` : 'No Assignments'}</button></td>
-      <td>$0.00</td>
+      <td>$${projectedIncome.toFixed(2)}</td>
       <td>
         <div class="filters__buttons">
           <button class="button__availability filters__button button">Availability</button>
