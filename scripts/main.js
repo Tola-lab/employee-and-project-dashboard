@@ -5,6 +5,7 @@ import { initEmployeeForm } from './employee-form.js';
 import { checkData } from './storage.js';
 import { renderProjects, deleteProject } from './render-projects.js';
 import { renderEmployees, deleteEmployee } from './render-employees.js';
+import { initPositionEdit, initSalaryEdit } from './inline-edit.js';
 import { SELECT_MONTH, SELECT_YEAR, MONTH, YEAR } from "./state.js";
 import { assignEmployee } from './assign-popup.js';
 
@@ -24,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   renderAll();
+  initPositionEdit();
+  initSalaryEdit();
   deleteProject();
   deleteEmployee();
   assignEmployee();

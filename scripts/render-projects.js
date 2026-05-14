@@ -1,5 +1,6 @@
-import { getDataFromMonth, deleteDataFromMonth, findProject } from './storage.js';
-import { effectiveCapacity, revenue, cost, profit } from './calculations.js';
+import { getDataFromMonth, deleteDataFromMonth, findProject, removeProjectFromEmployees } from './storage.js';
+import { effectiveCapacity, revenue, cost, profit, calcUsedEffectiveCapacity, calcProjectIncome } from './calculations.js';
+import { renderEmployees } from './render-employees.js';
 import { SELECT_MONTH, SELECT_YEAR } from "./state.js";
 
 export const deleteProject = () => {
@@ -17,8 +18,10 @@ export const deleteProject = () => {
         return;
       }
 
+      removeProjectFromEmployees(SELECT_YEAR.value, SELECT_MONTH.value, id);
       deleteDataFromMonth(SELECT_YEAR.value, SELECT_MONTH.value, 'projects', id);
       renderProjects(SELECT_YEAR.value, SELECT_MONTH.value);
+      renderEmployees(SELECT_YEAR.value, SELECT_MONTH.value);
     }
   })
 }
@@ -39,20 +42,12 @@ export const renderProjects = (year, month) => {
       employee.projectAssignments.some(assignment => assignment.projectId === project.id)
     );
 
-    const usedEffectiveCapacity = projectEmployees.reduce((sum, employee) => {
-      const assignment = employee.projectAssignments.find(a => a.projectId === project.id);
-      return sum + effectiveCapacity(assignment.capacity, assignment.fit);
-    }, 0);
-
-    const estimatedIncome = projectEmployees.reduce((sum, employee) => {
-      const assignment = employee.projectAssignments.find(a => a.projectId === project.id);
-      const employeeEffectiveCapacity = effectiveCapacity(assignment.capacity, assignment.fit);
-      const employeeRevenue = revenue(project.budget, project.employeeCapacity, usedEffectiveCapacity, employeeEffectiveCapacity);
-      const employeeCost = cost(employee.salary, assignment.capacity);
-      return sum + profit(employeeRevenue, employeeCost);
-    }, 0);
+    const usedEffectiveCapacity = calcUsedEffectiveCapacity(project, projectEmployees);
+    const estimatedIncome = calcProjectIncome(project, projectEmployees);
 
     totalIncome += estimatedIncome;
+
+    const incomeClass = estimatedIncome >= 0 ? 'positive-income' : 'negative-income';
 
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -61,7 +56,7 @@ export const renderProjects = (year, month) => {
       <td>$${project.budget.toFixed(2)}</td>
       <td>${usedEffectiveCapacity.toFixed(1)}/${project.employeeCapacity}</td>
       <td>-</td>
-      <td>$${estimatedIncome.toFixed(2)}</td>
+      <td class="${incomeClass}">$${estimatedIncome.toFixed(2)}</td>
       <td><button class="button__delete button" data-id="${project.id}">Delete</button></td>
     `;
 
@@ -73,5 +68,8 @@ export const renderProjects = (year, month) => {
     .reduce((sum, employee) => sum + employee.salary * 0.5, 0);
 
   const totalPrice = document.querySelector('.projects__price');
-  totalPrice.textContent = `$${(totalIncome - benchPayments).toFixed(2)}`;
+  const total = totalIncome - benchPayments;
+  totalPrice.textContent = `$${total.toFixed(2)}`;
+  totalPrice.classList.remove('positive-income', 'negative-income');
+  totalPrice.classList.add(total >= 0 ? 'positive-income' : 'negative-income');
 }

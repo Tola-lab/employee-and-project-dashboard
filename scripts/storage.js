@@ -1,4 +1,4 @@
-import { YEAR, MONTH } from "./state.js";
+import { YEAR, MONTH, SAMPLE_DATE } from "./state.js";
 
 const setData = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
@@ -15,67 +15,10 @@ const getDataFromMonth = (year, month) => {
   return (allData && allData[key]) || { employees: [], projects: [] };
 };
 
-const employeeData = {
-  id: 0,
-  name: '',
-  surname: '',
-  dateOfBirth: 0,
-  position: '',
-  salary: 0,
-  projectAssignments: [],
-  dayoff: [],
-};
-
-const projectData = {
-  id: 0,
-  projectName: '',
-  companyName: '',
-  budget: 0,
-  employeeCapacity: 0,
-};
-
-const sampleData = {
-  employees: [
-    {
-      id: 1,
-      name: 'Lisa',
-      surname: 'Ustiuzhanina',
-      dateOfBirth: '1998-09-17',
-      position: 'Junior',
-      salary: 1000,
-      projectAssignments: [{ projectId: 1, capacity: 0.8, fit: 0.9 }],
-      dayoff: [5, 10]
-    },
-    {
-      id: 2,
-      name: 'Max',
-      surname: 'Bondarenko',
-      dateOfBirth: '1995-04-19',
-      position: 'Senior',
-      salary: 3000,
-      projectAssignments: [{ projectId: 2, capacity: 0.9, fit: 0.5 }],
-      dayoff: [3, 4, 6]
-    }],
-  projects: [{
-    id: 1,
-    projectName: 'Cat',
-    companyName: 'Like',
-    budget: 1000,
-    employeeCapacity: 2,
-  },
-  {
-    id: 2,
-    projectName: 'Dog',
-    companyName: 'Mike',
-    budget: 7000,
-    employeeCapacity: 5,
-  }]
-};
-
 const checkData = () => {
   const allData = getData();
   if (allData) return;
-  setData('monthlyData', {[`${YEAR}-${MONTH}`] : sampleData })
+  setData('monthlyData', {[`${YEAR}-${MONTH}`] : SAMPLE_DATE })
 }
 
 const saveDataToMonth = (year, month, type, item) => {
@@ -102,7 +45,7 @@ const findEmployee = (year, month, id) => {
 
 const findProject = (year, month, id) => {
   const data = getDataFromMonth(year, month);
-  return data.projects.find(project => project.id === Number(id));
+  return data.projects.find(project => project.id ===  Number(id));
 }
 
 const updateEmployee = (year, month, employee) => {
@@ -115,4 +58,17 @@ const updateEmployee = (year, month, employee) => {
   setData('monthlyData', allData);
 };
 
-export { setData, getData, getDataFromMonth, checkData, saveDataToMonth, deleteDataFromMonth, findEmployee, findProject, updateEmployee, employeeData, projectData }
+const removeProjectFromEmployees = (year, month, projectId) => {
+  const allData = getData() || {};
+  const monthData = getDataFromMonth(year, month);
+
+  monthData.employees.map(employee => {
+    employee.projectAssignments = employee.projectAssignments.filter(assignment => assignment.projectId !== Number(projectId));
+    return employee;
+  });
+
+  allData[`${year}-${month}`] = monthData;
+  setData('monthlyData', allData);
+}
+
+export { setData, getData, getDataFromMonth, checkData, saveDataToMonth, deleteDataFromMonth, findEmployee, findProject, updateEmployee, removeProjectFromEmployees }

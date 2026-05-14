@@ -307,6 +307,11 @@ body {
   background-color: #2d6feb;
 }
 
+.button__assign:disabled {
+  background-color: #6e7078;
+  cursor: default;
+}
+
 .dashboard__form--project,
 .dashboard__form--employee {
   position: absolute;
@@ -418,7 +423,6 @@ body {
 .available-capacity,
 .projects__price {
   font-weight: 600;
-  color: #2aa848;
 }
 
 .assign__label {
@@ -507,4 +511,23 @@ body {
 .popup__button {
   padding: 5px;
   text-transform: none;
+}
+
+.positive-income {
+ color: #2aa848;
+}
+
+.negative-income {
+  color: #e74c3c;
+}
+
+.position,
+.salary {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.position:hover,
+.salary:hover {
+  background-color: #e9eeef;
 }
