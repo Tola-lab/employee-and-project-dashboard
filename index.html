@@ -150,15 +150,19 @@
     <form action="#" method="post">
       <label class="form__label" for="project-name">Project Name: *</label>
       <input class="form__input" type="text" id="project-name" name="project-name" title="Project name must be at least 3 characters" minlength="3" required>
+      <span class="form__error" id="project-name-error"></span>
 
       <label class="form__label" for="company-name">Company Name: *</label>
       <input class="form__input" type="text" id="company-name" name="company-name" title="Company name must be at least 2 characters" minlength="2" required>
+      <span class="form__error" id="company-name-error"></span>
 
       <label class="form__label" for="budget">Budget: *</label>
       <input class="form__input" type="number" id="budget" name="budget" title="Budget must be greater than 0" min="0.01" step="0.01" required>
+      <span class="form__error" id="budget-error"></span>
 
       <label class="form__label" for="employee-capacity">Employee Capacity: *</label>
       <input class="form__input" type="number" id="employee-capacity" name="employee-capacity" title="Employee capacity must be at least 1" min="1" step="1" required>
+      <span class="form__error" id="capacity-error"></span>
 
       <div class="form__buttons">
         <button class="form__button form__button--add button" type="submit" disabled>Add</button>
@@ -172,15 +176,18 @@
     <form action="#" method="post">
       <label class="form__label" for="name">Name: *</label>
       <input class="form__input" type="text" id="name" name="name" title="Name must be at least 3 characters and contain only letters" minlength="3" required>
+      <span class="form__error" id="name-error"></span>
 
       <label class="form__label" for="surname">Surname: *</label>
       <input class="form__input" type="text" id="surname" name="surname" title="Surname must be at least 3 characters and contain only letters" minlength="3" required>
+      <span class="form__error" id="surname-error"></span>
 
       <label class="form__label" for="date-of-birth">Date of Birth: *</label>
       <input class="form__input" type="date" id="date-of-birth" name="date-of-birth" title="You must be at least 18 years old" required>
+      <span class="form__error" id="date-of-birth-error"></span>
 
       <label class="form__label" for="position">Position: *</label>
-      <select class="form__select" id="position" name="position" required>
+      <select class="form__select" id="position" name="position" title="Please select a position" required>
         <option value="">Select position</option>
         <option value="Junior">Junior</option>
         <option value="Middle">Middle</option>
@@ -189,9 +196,11 @@
         <option value="Architect">Architect</option>
         <option value="BO">BO</option>
       </select>
+      <span class="form__error" id="position-error"></span>
 
       <label class="form__label" for="salary">Salary: *</label>
       <input class="form__input" type="number" id="salary" name="salary" title="Salary must be greater than 0" min="0.01" step="0.01" required>
+      <span class="form__error" id="salary-error"></span>
 
       <div class="form__buttons">
         <button class="form__button form__button--add button" type="submit" disabled>Add</button>

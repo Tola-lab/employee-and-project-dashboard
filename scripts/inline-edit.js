@@ -1,5 +1,7 @@
 import { updateEmployee, findEmployee } from './storage.js';
 import {SELECT_YEAR, SELECT_MONTH} from './state.js';
+import { renderEmployees } from './render-employees.js';
+import { renderProjects } from './render-projects.js';
 
 const container = document.querySelector('.filters__tbody--employees');
 
@@ -53,6 +55,8 @@ const initSalaryEdit = () => {
         const employee = findEmployee(SELECT_YEAR.value, SELECT_MONTH.value, id);
         employee.salary = newSalary;
         updateEmployee(SELECT_YEAR.value, SELECT_MONTH.value, employee);
+        renderEmployees(SELECT_YEAR.value, SELECT_MONTH.value);
+        renderProjects(SELECT_YEAR.value, SELECT_MONTH.value);
         cellSalary.textContent = `$${newSalary.toFixed(2)}`;
       }
     };

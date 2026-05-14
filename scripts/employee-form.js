@@ -1,12 +1,12 @@
 import { createEmployee } from "./employee-service.js";
 import { renderEmployees } from "./render-employees.js";
-import { SELECT_MONTH, SELECT_YEAR } from "./state.js";
+import { validateEmployeeForm } from "./validate-employee-form.js";
+import { SELECT_MONTH, SELECT_YEAR, NOW } from "./state.js";
 
 const form = document.querySelector('.dashboard__form--employee form');
 const container = form.closest('.dashboard__form--employee');
 const buttonOpen = document.querySelector('.employees__button');
 const buttonClose = container.querySelector('.form__button--cancel');
-const submitButton = container.querySelector('.form__button--add');
 
 const showEmployeeForm = () => {
   buttonOpen.addEventListener('click', () => {
@@ -24,9 +24,7 @@ export const initEmployeeForm = () => {
   if (!buttonOpen) return;
   if (!buttonClose) return;
 
-  form.addEventListener('input', () => {
-    submitButton.disabled = !form.checkValidity();
-  });
+  validateEmployeeForm();
 
   form.addEventListener('submit', (evt) => {
       if (!form.checkValidity()) {
