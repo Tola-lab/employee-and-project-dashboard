@@ -8,6 +8,8 @@ import { renderEmployees, deleteEmployee } from './render-employees.js';
 import { initPositionEdit, initSalaryEdit } from './inline-edit.js';
 import { SELECT_MONTH, SELECT_YEAR, MONTH, YEAR } from "./state.js";
 import { assignEmployee } from './assign-popup.js';
+import { initShowEmployeesPopup } from './show-employees-popup.js';
+import { initShowAssignmentsPopup } from './show-assignments-popup.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   SELECT_MONTH.value = MONTH;
@@ -30,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
   deleteProject();
   deleteEmployee();
   assignEmployee();
+  initShowEmployeesPopup();
+  initShowAssignmentsPopup();
 
   SELECT_YEAR.addEventListener('change', renderAll);
   SELECT_MONTH.addEventListener('change', renderAll);

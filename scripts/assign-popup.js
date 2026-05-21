@@ -5,6 +5,10 @@ import { renderProjects } from './render-projects.js';
 
 const assignPopup = document.querySelector('.assign');
 const projectSelect = assignPopup.querySelector('.assign__select');
+const capacitySlider = document.getElementById('capacity-allocation');
+const fitSlider = document.getElementById('project-fit');
+const capacityValue = document.getElementById('capacity-value');
+const fitValue = document.getElementById('fit-value');
 
 let currentEmployee;
 let currentData;
@@ -36,6 +40,9 @@ const openAssignPopup = (employee, data) => {
 
   const currentCapacityValue = employee.projectAssignments.reduce((sum, a) => sum + a.capacity, 0);
   const availableCapacityValue = 1.5 - currentCapacityValue;
+  capacitySlider.max = availableCapacityValue;
+  capacitySlider.value = Math.min(capacitySlider.value, availableCapacityValue);
+  capacityValue.textContent = capacitySlider.value;
 
   assignTitle.textContent = `Assign ${employee.name} ${employee.surname}`;
   currentCapacityEl.textContent = currentCapacityValue.toFixed(1);
@@ -54,8 +61,8 @@ const closeAssignPopup = () => {
 }
 
 const getEffectiveCapacity = () => {
-  const capacity = +document.getElementById('capacity-allocation').value;
-  const fit = +document.getElementById('project-fit').value;
+  const capacity = +capacitySlider.value;
+  const fit = +fitSlider.value;
   return capacity * fit;
 }
 
@@ -76,17 +83,15 @@ const updateInfo = () => {
 }
 
 const capacityAllocationSlider = () => {
-  const input = document.getElementById('capacity-allocation');
-  input.addEventListener('input', () => {
-    document.getElementById('capacity-value').textContent = input.value;
+  capacitySlider.addEventListener('input', () => {
+    capacityValue.textContent = capacitySlider.value;
     updateInfo();
   });
 };
 
 const projectFitSlider = () => {
-  const input = document.getElementById('project-fit');
-  input.addEventListener('input', () => {
-    document.getElementById('fit-value').textContent = input.value;
+  fitSlider.addEventListener('input', () => {
+    fitValue.textContent = fitSlider.value;
     updateInfo();
   });
 };
@@ -106,8 +111,8 @@ export const assignEmployee = () => {
   assignPopup.querySelector('.assign__button--apply').addEventListener('click', () => {
     if (!currentEmployee) return;
     const projectId = Number(projectSelect.value);
-    const capacity = +document.getElementById('capacity-allocation').value;
-    const fit = +document.getElementById('project-fit').value;
+    const capacity = +capacitySlider.value;
+    const fit = +fitSlider.value;
 
     currentEmployee.projectAssignments.push({ projectId, capacity, fit });
     updateEmployee(SELECT_YEAR.value, SELECT_MONTH.value, currentEmployee);

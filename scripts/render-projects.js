@@ -1,5 +1,5 @@
 import { getDataFromMonth, deleteDataFromMonth, findProject, removeProjectFromEmployees } from './storage.js';
-import { effectiveCapacity, revenue, cost, profit, calcUsedEffectiveCapacity, calcProjectIncome } from './calculations.js';
+import { calcUsedEffectiveCapacity, calcProjectIncome } from './calculations.js';
 import { renderEmployees } from './render-employees.js';
 import { SELECT_MONTH, SELECT_YEAR } from "./state.js";
 
@@ -55,7 +55,7 @@ export const renderProjects = (year, month) => {
       <td>${project.projectName}</td>
       <td>$${project.budget.toFixed(2)}</td>
       <td>${usedEffectiveCapacity.toFixed(1)}/${project.employeeCapacity}</td>
-      <td>-</td>
+      <td><button class="button__show-employees button" data-id="${project.id}">${projectEmployees.length > 0 ? `Show Employees (${projectEmployees.length})` : 'No Employees'}</button></td>
       <td class="${incomeClass}">$${estimatedIncome.toFixed(2)}</td>
       <td><button class="button__delete button" data-id="${project.id}">Delete</button></td>
     `;

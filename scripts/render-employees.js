@@ -1,5 +1,6 @@
 import { getDataFromMonth, deleteDataFromMonth, findEmployee } from './storage.js';
 import {effectiveCapacity, revenue, cost, profit, calcUsedEffectiveCapacity } from './calculations.js';
+import { renderProjects } from './render-projects.js';
 import { SELECT_MONTH, SELECT_YEAR } from "./state.js";
 
 export const deleteEmployee = () => {
@@ -19,6 +20,7 @@ export const deleteEmployee = () => {
 
       deleteDataFromMonth(SELECT_YEAR.value, SELECT_MONTH.value, 'employees', id);
       renderEmployees(SELECT_YEAR.value, SELECT_MONTH.value);
+      renderProjects(SELECT_YEAR.value, SELECT_MONTH.value);
     }
   })
 }
@@ -69,7 +71,7 @@ export const renderEmployees = (year, month) => {
       <td class="position" data-id="${employee.id}">${employee.position}</td>
       <td class="salary" data-id="${employee.id}">$${employee.salary.toFixed(2)}</td>
       <td>$${estimatedPayment.toFixed(2)}</td>
-      <td><button class="button__show-assignments button">${assignmentCount > 0 ? `Show Assignments (${assignmentCount}) ${totalCapacity.toFixed(1)}/1.5` : 'No Assignments'}</button></td>
+      <td><button class="button__show-assignments button" data-id="${employee.id}">${assignmentCount > 0 ? `Show Assignments (${assignmentCount}) ${totalCapacity.toFixed(1)}/1.5` : 'No Assignments'}</button></td>
       <td class="${incomeClass}">$${projectedIncome.toFixed(2)}</td>
       <td>
         <div class="filters__buttons">
