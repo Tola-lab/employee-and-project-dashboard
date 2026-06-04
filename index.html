@@ -9,50 +9,47 @@
 </head>
 
 <body class="page__body">
+  <aside class="dashboard__sidebar sidebar">
+    <button class="sidebar__button-open" aria-label="Open sidebar">→</button>
+    <button class="sidebar__button" type="button" aria-label="Close sidebar">
+      <span class="hamburger"></span>
+    </button>
+    <h2 class="sidebar__title">Period</h2>
+    <div class="sidebar__select select">
+      <select class="select__item" name="select-month" id="select-month">
+        <option value="0">January</option>
+        <option value="1">February</option>
+        <option value="2">March</option>
+        <option value="3">April</option>
+        <option value="4">May</option>
+        <option value="5">June</option>
+        <option value="6">July</option>
+        <option value="7">August</option>
+        <option value="8">September</option>
+        <option value="9">October</option>
+        <option value="10">November</option>
+        <option value="11">December</option>
+      </select>
+      <select class="select__item" name="select-year" id="select-year">
+        <option value="2025">2025</option>
+        <option value="2026" selected>2026</option>
+        <option value="2027">2027</option>
+      </select>
+    </div>
+    <nav class="sidebar__navigation navigation">
+      <ul class="navigation__list">
+        <li class="navigation__item">
+          <a class="navigation__link" href="#" id="navigation-projects">Projects</a>
+        </li>
+        <li class="navigation__item">
+          <a class="navigation__link" href="#" id="navigation-employees">Employees</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
   <main class="main-container">
     <h1 class="visually-hidden">Employee & Project dashboard</h1>
-    <aside class="dashboard__sidebar sidebar">
-      <button class="sidebar__button-open" aria-label="Open sidebar">→</button>
-      <div class="sidebar__wrapper">
-        <button class="sidebar__button" type="button" aria-label="Close sidebar">
-          <span class="hamburger"></span>
-        </button>
-        <div class="sidebar__period">
-          <h2 class="sidebar__title">Period</h2>
-          <div class="sidebar__select select">
-            <select class="select__item" name="select-month" id="select-month">
-              <option value="0">January</option>
-              <option value="1">February</option>
-              <option value="2">March</option>
-              <option value="3">April</option>
-              <option value="4">May</option>
-              <option value="5">June</option>
-              <option value="6">July</option>
-              <option value="7">August</option>
-              <option value="8">September</option>
-              <option value="9">October</option>
-              <option value="10">November</option>
-              <option value="11">December</option>
-            </select>
-            <select class="select__item" name="select-year" id="select-year">
-              <option value="2025">2025</option>
-              <option value="2026" selected>2026</option>
-              <option value="2027">2027</option>
-            </select>
-          </div>
-          <nav class="sidebar__navigation navigation">
-            <ul class="navigation__list">
-              <li class="navigation__item">
-                <a class="navigation__link" href="#" id="navigation-projects">Projects</a>
-              </li>
-              <li class="navigation__item">
-                <a class="navigation__link" href="#" id="navigation-employees">Employees</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </aside>
 
     <section class="dashboard__projects projects">
       <div class="projects__wrapper wrapper">
@@ -330,13 +327,61 @@
             <td>$0</td>
             <td>$0</td>
             <td>
-              <button class="popup__edit-assignment-btn button" data-capacity="0" data-fit="0" data-employee-name="" data-project-name="">Edit</button>
-              <button class="popup__unassign-action-btn button" data-employee-name="" data-employee-surname="" data-project-name="">Unassign</button>
+              <button class="popup__edit-button button" data-capacity="0" data-fit="0" data-employee-name="" data-project-name="">Edit</button>
+              <button class="popup__unassign-button button" data-employee-name="" data-employee-surname="" data-project-name="">Unassign</button>
             </td>
           </tr>
 
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <div class="details__overlay">
+    <div class="unassignment__popup unassignment">
+      <h3 class="unassignment__title">Unassign Confirmation</h3>
+      <p class="unassign__message"></p>
+
+      <div class="unassignment__content content">
+        <ul class="content__list">
+          <li class="content__item">
+            <p class="content__label">Assigned Capacity:</p>
+            <span class="content__value">0</span>
+          </li>
+          <li class="content__item">
+            <p class="content__label">Employee Salary Share:</p>
+            <span class="content__value"></span>
+          </li>
+          <li class="content__item">
+            <p class="content__label">Budget Share:</p>
+            <span class="content__value"></span>
+          </li>
+          <li class="content__item">
+            <p class="content__label">Employee Estimated Income:</p>
+            <span class="content__value"></span>
+          </li>
+          <li class="content__item">
+            <p class="content__label">Current Project Capacity:</p>
+            <span class="content__value"></span>
+          </li>
+          <li class="content__item">
+            <p class="content__label">Capacity After Unassignment:</p>
+            <span class="content__value"></span>
+          </li>
+          <li class="content__item">
+            <p class="content__label">Project Income Now:</p>
+            <span class="content__value"></span>
+          </li>
+          <li class="content__item">
+            <p class="content__label">Project Income After:</p>
+            <span class="content__value"></span>
+          </li>
+        </ul>
+      </div>
+      <div class="content__buttons">
+        <button class="content__button content__button--cancel button">Cancel</button>
+        <button class="content__button content__button--unassign button">Unassign</button>
+      </div>
     </div>
   </div>
 

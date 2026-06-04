@@ -2,6 +2,7 @@ import { getDataFromMonth, findProject } from './storage.js';
 import { SELECT_MONTH, SELECT_YEAR } from "./state.js";
 import { effectiveCapacity, revenue, cost, profit, calcUsedEffectiveCapacity} from './calculations.js';
 
+const body = document.querySelector('.page__body');
 const container = document.querySelector('.details__popup');
 const closeButton = document.querySelector('.popup__close-btn');
 const popupTitle = document.querySelector('.popup__title');
@@ -9,10 +10,12 @@ const popupName = document.querySelector('.popup__thead-name');
 
 const openShowEmployeesPopup = () => {
   container.classList.add('popup-open');
+  body.classList.add('page__body--overlay');
 }
 
 const closeShowEmployeesPopup = () => {
   container.classList.remove('popup-open');
+  body.classList.remove('page__body--overlay');
 }
 
 const renderShowEmployeesPopupContent = (project, data) => {
@@ -44,8 +47,8 @@ const renderShowEmployeesPopupContent = (project, data) => {
       <td>$${employeeCost.toFixed(2)}</td>
       <td class="${incomeClass}">$${employeeProfit.toFixed(2)}</td>
       <td>
-        <button class="popup__edit-assignment-btn button">Edit</button>
-        <button class="popup__unassign-action-btn button">Unassign</button>
+        <button class="popup__edit-button button">Edit</button>
+        <button class="popup__unassign-button button" data-employee-id="${employee.id}" data-project-id="${project.id}">Unassign</button>
       </td>
     `;
 

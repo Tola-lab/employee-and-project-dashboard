@@ -10,6 +10,7 @@ import { SELECT_MONTH, SELECT_YEAR, MONTH, YEAR } from "./state.js";
 import { assignEmployee } from './assign-popup.js';
 import { initShowEmployeesPopup } from './show-employees-popup.js';
 import { initShowAssignmentsPopup } from './show-assignments-popup.js';
+import { initUnssignPopup } from './unassign-popup.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   SELECT_MONTH.value = MONTH;
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   assignEmployee();
   initShowEmployeesPopup();
   initShowAssignmentsPopup();
+  initUnssignPopup();
 
   SELECT_YEAR.addEventListener('change', renderAll);
   SELECT_MONTH.addEventListener('change', renderAll);

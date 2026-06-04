@@ -21,6 +21,7 @@ body {
   color: #181C29;
   background-color: #e9eeef;
   overflow-wrap: break-word;
+  overflow: hidden;
 }
 
 .visually-hidden {
@@ -35,9 +36,27 @@ body {
 }
 
 .page__body {
+  display: flex;
+  flex-direction: row;
   max-width: 1440px;
+  height: 100vh;
   margin: 0 auto;
-  overflow: hidden;
+}
+
+.page__body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+
+.page__body.page__body--overlay::before {
+  opacity: 0.6;
+  pointer-events: auto;
 }
 
 .button {
@@ -71,27 +90,21 @@ body {
 }
 
 .main-container {
-  display: flex;
-  justify-content: space-between;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .sidebar {
-  width: 310px;
+  width: 250px;
+  color: #ffffff;
+  background-color: #373f5c;
   transition: width 0.3s ease;
-  overflow: hidden;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
 
 .sidebar--hidden {
   width: 0;
-}
-
-.sidebar__wrapper {
-  width: 250px;
-  height: 100vh;
-  color: #ffffff;
-  background-color: #373f5c;
-  text-align: center;
-  transition: transform 0.3s ease;
 }
 
 .sidebar--hidden .sidebar__wrapper {
@@ -157,13 +170,16 @@ body {
   left: 10px;
 }
 
+.sidebar__title {
+  text-align: center;
+}
+
 .sidebar__select {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-left: 25px;
+  padding: 20px;
   margin-bottom: 40px;
-  width: 200px;
 }
 
 .select__item {
@@ -294,14 +310,14 @@ body {
 .popup__button--apply,
 .button__show-assignments,
 .button__show-employees,
-.popup__edit-assignment-btn {
+.popup__edit-button {
   background-color: #4787ff;
 }
 
 .button__show-assignments,
 .button__show-employees,
-.popup__edit-assignment-btn,
-.popup__unassign-action-btn {
+.popup__edit-button,
+.popup__unassign-button {
   text-transform: none;
   font-size: 12px;
 }
@@ -310,7 +326,7 @@ body {
 .popup__button--apply:hover,
 .button__show-assignments:hover,
 .button__show-employees:hover,
-.popup__edit-assignment-btn:hover {
+.popup__edit-button:hover {
   background-color: #2d6feb;
 }
 
@@ -372,13 +388,15 @@ body {
 
 .form__button--cancel,
 .button__delete,
-.popup__unassign-action-btn {
+.popup__unassign-button,
+.content__button--unassign {
   background-color: #e74c3c;
 }
 
 .form__button--cancel:hover,
 .button__delete:hover,
-.popup__unassign-action-btn:hover {
+.popup__unassign-button:hover,
+.content__button--unassign:hover {
   background-color: #d7220e;
 }
 
@@ -547,18 +565,35 @@ body {
   color: #e74c3c;
 }
 
-.details__popup {
+.details__popup,
+.unassignment {
   display: none;
   position: absolute;
   top: 50%;
   left: 50%;
   width: 80%;
   padding: 0;
+  background-color: #ffffff;
   box-shadow: 0 2px 10px #0000001a;
+  border-radius: 10px;
   transform: translate(-50%, -50%);
+  z-index: 3;
 }
 
-.popup-open {
+.details__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+
+.details__overlay--open {
+  display: block;
+}
+
+.popup-open,
+.unassignment-open {
   display: block;
 }
 
@@ -569,6 +604,7 @@ body {
   padding: 10px 20px;
   color: #ffffff;
   background-color: #404762;
+  border-radius: 10px 10px 0 0;
 }
 
 .popup__close-btn {
@@ -587,8 +623,10 @@ body {
   background-color: #5d6480;
 }
 
-.popup__content {
+.popup__content,
+.unassignment__content {
   padding: 40px 20px;
+  border-radius: 10px;
 }
 
 .popup__table {
@@ -619,4 +657,60 @@ body {
 
 .popup__link:hover {
   text-decoration: underline;
+}
+
+.unassignment {
+  padding: 20px;
+  width: 550px;
+  z-index: 5;
+}
+
+.unassignment__title {
+  margin: 0;
+  font-size: 26px;
+}
+
+.unassignment__content {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+}
+
+.unassign__message {
+  font-size: 16px;
+}
+
+.content__list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.content__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content__label {
+  margin: 0;
+  font-weight: 800;
+}
+
+.content__buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.content__button--cancel {
+  background-color: #95a5a6;
+}
+
+.content__button--cancel:hover {
+  background-color: #7f8c8d;
 }
