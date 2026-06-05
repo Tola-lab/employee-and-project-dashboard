@@ -18,7 +18,7 @@ const closeShowEmployeesPopup = () => {
   body.classList.remove('page__body--overlay');
 }
 
-const renderShowEmployeesPopupContent = (project, data) => {
+export const renderShowEmployeesPopupContent = (project, data) => {
   const projectEmployees = data.employees.filter(employee =>
     employee.projectAssignments.some(assignment => assignment.projectId === project.id)
   );
@@ -53,7 +53,11 @@ const renderShowEmployeesPopupContent = (project, data) => {
     `;
 
     tbody.appendChild(row);
-  })
+  });
+
+  if (projectEmployees.length === 0) {
+  tbody.innerHTML = '<tr><td colspan="9">No employees on this project.</td></tr>';
+}
 }
 
 export const initShowEmployeesPopup = () => {
@@ -64,6 +68,8 @@ export const initShowEmployeesPopup = () => {
       const id = evt.target.dataset.id;
       const data = getDataFromMonth(SELECT_YEAR.value, SELECT_MONTH.value);
       const project = findProject(SELECT_YEAR.value, SELECT_MONTH.value, id);
+
+      container.dataset.type = 'employees';
       openShowEmployeesPopup();
 
       popupName.textContent = 'Employee';

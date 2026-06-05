@@ -18,7 +18,7 @@ const closeShowAssignmentsPopup = () => {
   body.classList.remove('page__body--overlay');
 }
 
-const renderShowAssignmentsPopupContent = (employee, data) => {
+export const renderShowAssignmentsPopupContent = (employee, data) => {
 
   const tbody = container.querySelector('tbody');
   tbody.innerHTML = '';
@@ -54,7 +54,11 @@ const renderShowAssignmentsPopupContent = (employee, data) => {
     `;
 
     tbody.appendChild(row);
-  })
+  });
+
+  if (employee.projectAssignments.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="9">No assignments for this employee.</td></tr>';
+  };
 }
 
 export const initShowAssignmentsPopup = () => {
@@ -65,6 +69,8 @@ export const initShowAssignmentsPopup = () => {
       const id = evt.target.dataset.id;
       const data = getDataFromMonth(SELECT_YEAR.value, SELECT_MONTH.value);
       const employee = findEmployee(SELECT_YEAR.value, SELECT_MONTH.value, id);
+
+      container.dataset.type = 'assignments';
       openShowAssignmentsPopup();
 
       popupName.textContent = 'Project';

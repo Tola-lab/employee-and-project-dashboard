@@ -1,6 +1,10 @@
-import { getDataFromMonth, findProject, findEmployee } from './storage.js';
+import { getDataFromMonth, findProject, findEmployee, updateEmployee } from './storage.js';
 import { SELECT_MONTH, SELECT_YEAR } from "./state.js";
 import { effectiveCapacity, revenue, cost, profit, calcUsedEffectiveCapacity, calcProjectIncome} from './calculations.js';
+import { renderEmployees } from './render-employees.js';
+import { renderProjects } from './render-projects.js';
+import { renderShowAssignmentsPopupContent } from './show-assignments-popup.js';
+import { renderShowEmployeesPopupContent } from './show-employees-popup.js';
 
 const overlay = document.querySelector('.details__overlay');
 const container = document.querySelector('.unassignment');
@@ -64,8 +68,28 @@ const renderUnassignPopup = (employee, project, data, projectId) => {
 
 const unassignEmployyee = () => {
   unassignButton.addEventListener('click', () => {
+    const data = getDataFromMonth(SELECT_YEAR.value, SELECT_MONTH.value);
+    const employee = findEmployee(SELECT_YEAR.value, SELECT_MONTH.value, currentEmployeeId);
+    const project = findProject(SELECT_YEAR.value, SELECT_MONTH.value, currentProjectId);
 
-  })
+    employee.projectAssignments = employee.projectAssignments.filter(
+      a => a.projectId !== Number(currentProjectId)
+    );
+
+    updateEmployee(SELECT_YEAR.value, SELECT_MONTH.value, employee);
+    closeUnassignPopup();
+    renderEmployees(SELECT_YEAR.value, SELECT_MONTH.value);
+    renderProjects(SELECT_YEAR.value, SELECT_MONTH.value);
+    const freshData = getDataFromMonth(SELECT_YEAR.value, SELECT_MONTH.value);
+
+
+    const detailsPopup = document.querySelector('.details__popup');
+      if (detailsPopup.dataset.type === 'assignments') {
+        renderShowAssignmentsPopupContent(employee, freshData);
+      } else {
+        renderShowEmployeesPopupContent(project, freshData);
+      }
+        })
 }
 
 export const initUnssignPopup = () => {
